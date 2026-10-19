@@ -40,7 +40,9 @@ Principle: knowledge is shared now and updates automatically (junctions into `~/
 
 ADRs 0003–0005, 0008, 0010–0017, 0019, 0022, 0023, 0026, 0030, 0035, 0041, 0042, 0044; GDD sections 1–12; `NOTES.md` entries; `content-plan.md`; `research/`; `store-listing.md`.
 
-## Open decisions
+## Delivery (decided 2026-10-19)
 
-- GitHub remote for this repo (private) – Leo creates or approves.
-- Junctions now; a private plugin marketplace later if a second machine or collaborator needs it.
+No plugin. Per the Claude Code docs, cloud sessions don't install plugins (not even ones a repo's `.claude/settings.json` enables), and a plugin can't ship a `CLAUDE.md`. Instead the studio repo installs itself everywhere with one script per place: `link.ps1` (Windows), `link.sh` (VM, Linux, macOS), and `link.sh` from the cloud environment's setup script (README).
+
+- [ ] First cloud session: confirm the setup script can clone this private repo (Claude GitHub App installed on it) and that `/context` lists the studio `CLAUDE.md` and skills. Fallback if the clone is refused: enable the skills on claude.ai, which cloud sessions load automatically.
+- [ ] `link.sh` rerun on real Linux: untested (Windows can't make real symlinks without Developer Mode); first run tested.
