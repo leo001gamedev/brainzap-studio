@@ -23,13 +23,17 @@ powershell -ExecutionPolicy Bypass -File link.ps1
 ./link.sh
 ```
 
-**Claude Code cloud sessions** don't see `~/.claude` from your machine and don't install plugins, so the cloud environment installs the studio itself. Paste this into the environment's setup script on claude.ai (Settings of the environment → Setup script). The Claude GitHub App must be installed on this repo so the session can clone it:
+**Claude Code cloud sessions** don't see `~/.claude` from your machine and don't install plugins, so the cloud environment installs the studio itself. This repo stays private, and a setup script can't use the session's GitHub access (a plain clone fails with `could not read Username`), so it clones with a read-only token:
+
+1. GitHub → Settings → Developer settings → Fine-grained tokens → Generate new token: only `brainzap-studio`, permission *Contents: Read-only*, nothing else. Note its expiry date.
+2. In the claude.ai cloud environment, add the environment variable `STUDIO_TOKEN` with the token.
+3. Set the environment's setup script to this single line:
 
 ```bash
-git clone --depth 1 https://github.com/leo001gamedev/brainzap-studio.git /opt/brainzap-studio && bash /opt/brainzap-studio/link.sh
+git clone --depth 1 "https://leo001gamedev:${STUDIO_TOKEN}@github.com/leo001gamedev/brainzap-studio.git" /opt/brainzap-studio && git -C /opt/brainzap-studio remote remove origin && bash /opt/brainzap-studio/link.sh
 ```
 
-Keep it on one line: if a copy-paste merges two lines, `git clone` gets an extra argument and fails with `Too many arguments`.
+Keep it on one line: if a copy-paste merges two lines, `git clone` gets an extra argument and fails with `Too many arguments`. Removing `origin` takes the token out of the clone's git config. When the token expires, cloud setup fails with an authentication error: generate a new one and replace `STUDIO_TOKEN`.
 
 Every new cloud session clones the latest `master`. To check, run `/context` in a session and look for the studio `CLAUDE.md` under Memory files.
 
