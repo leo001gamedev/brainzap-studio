@@ -26,10 +26,10 @@ powershell -ExecutionPolicy Bypass -File link.ps1
 **Claude Code cloud sessions** don't see `~/.claude` from your machine and don't install plugins, so the cloud environment installs the studio itself. Paste this into the environment's setup script on claude.ai (Settings of the environment → Setup script). The Claude GitHub App must be installed on this repo so the session can clone it:
 
 ```bash
-#!/bin/bash
-git clone --depth 1 https://github.com/leo001gamedev/brainzap-studio.git /opt/brainzap-studio
-/opt/brainzap-studio/link.sh
+git clone --depth 1 https://github.com/leo001gamedev/brainzap-studio.git /opt/brainzap-studio && bash /opt/brainzap-studio/link.sh
 ```
+
+Keep it on one line: if a copy-paste merges two lines, `git clone` gets an extra argument and fails with `Too many arguments`.
 
 Every new cloud session clones the latest `master`. To check, run `/context` in a session and look for the studio `CLAUDE.md` under Memory files.
 
