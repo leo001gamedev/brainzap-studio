@@ -7,7 +7,7 @@ Principle: knowledge is shared now and updates automatically (junctions into `~/
 ## Steps
 
 - [x] **1. Studio repo and first skill.** `brainzap-studio` created; `leo-architecture-standards` moved into `skills/` and junctioned back (backup of the original in `~/.claude/backups/skills-2026-10-19/`). `link.ps1` sets up a new machine.
-- [ ] **2. Global `CLAUDE.md`.** Write `CLAUDE.md` here, junction or link it to `~/.claude/CLAUDE.md`. Contents:
+- [x] **2. Global `CLAUDE.md`.** Done 2026-10-19: `~/.claude/CLAUDE.md` is one `@` import of this repo's `CLAUDE.md` (written by `link.ps1`, without a BOM); skill §10 now targets `develop`; four vine-trail memories deleted, the fifth updated; vine-trail `CLAUDE.md` and GDD section 0 point here. Known gap: sessions without this machine's `~/.claude` (cloud sessions, another computer before `link.ps1`) only see each repo's own `CLAUDE.md`; a private plugin marketplace would close it. Original contents:
   - Branching: milestone branch → `develop` → `master` after full testing; push to the milestone branch, never to `develop`; `Closes #N` auto-closes only on the default branch.
   - One task per commit, message `Mn: task`.
   - ADR in the same commit for architecture, data-format or design decisions; Proposed by Claude, Accepted by Leo; accepted ADRs are superseded, never edited.
@@ -23,7 +23,7 @@ Principle: knowledge is shared now and updates automatically (junctions into `~/
   - `finish-task`: dev-costs row from `.claude/session-cost.json` (procedure in vine-trail `docs/dev-costs.md`), GDD checkboxes, commit, push to the milestone branch.
   - `review-to-burndown`: create the "Bug burndown" milestone if missing; one issue per unfixed finding, linking its source.
   - `write-adr`: GDD section 0's template and rules, plus "studio ADR or game ADR?".
-  - Later: `new-game` (when game two starts), `harvest-lessons` (end of each milestone).
+  - Later: `new-game` (when game two starts; its `CLAUDE.md` names the studio rules and `leo-architecture-standards` explicitly, Leo's preference), `harvest-lessons` (end of each milestone).
 - [ ] **4. Studio ADRs and playbooks** (`adr/S-0001…`, each with "origin: vine-trail ADR-00xx"; vine-trail copies stay):
   - Architecture: 0002, 0006, 0009
   - Saves: 0007; additive-field-with-default pattern from 0021/0024/0032
