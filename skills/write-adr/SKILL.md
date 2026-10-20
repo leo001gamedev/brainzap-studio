@@ -19,8 +19,10 @@ No for a bug fix that restores documented behaviour, a refactor with no visible 
 
 ## 2. Game ADR or studio ADR?
 
-- **Game ADR** (`docs/adr/` in the game repo): the decision is about this game.
-- **Studio-wide** (it would apply to every BrainZap game: platform wrapper, saves, analytics schema, release zips, browser rules): still write the game ADR, since this game is where it lands, and tell Leo it's a studio candidate for the `brainzap-studio` repo.
+First check the studio ADRs in the `brainzap-playbook` skill: if one already covers the decision, the game follows it and cites it (`studio S-0003`) with no ADR of its own.
+
+- **Game ADR** (`docs/adr/` in the game repo): the decision is about this game, or it departs from a studio ADR. A departure names the studio ADR and says why this game differs.
+- **Studio-wide** (it would apply to every BrainZap game: platform wrapper, saves, analytics schema, release zips, browser rules): still write the game ADR, since this game is where it lands, and tell Leo it's a candidate for `brainzap-playbook`.
 
 ## 3. Write it
 

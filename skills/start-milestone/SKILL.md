@@ -13,7 +13,7 @@ One milestone = one GitHub milestone + one spec issue + one GDD section + one br
 - The next free number: `gh api "repos/{owner}/{repo}/milestones?state=all" --jq '.[].title'` and the GDD's milestone headings. Take the highest `Mn` + 1. Numbers are never reused, even for a cancelled milestone.
 - The model: the project's `CLAUDE.md` may name one; otherwise read the newest spec issues so tone and depth match:
   `gh issue list --state all -L 100 --json number,title,milestone --jq '[.[] | select((.milestone.title // "") | test("^M[0-9]+ - ")) | select(.title | test("^M[0-9]+: "))] | .[:3][] | "#\(.number) \(.title)"'`
-- The GDD sections the milestone touches, and Accepted ADRs it must not contradict.
+- The GDD sections the milestone touches, Accepted ADRs it must not contradict, and the studio ADRs in `brainzap-playbook` for its areas (saves, platforms, analytics, layout, content, ads, sharing), so the spec builds on them instead of re-deciding.
 
 ## 2. Create the GitHub milestone
 
