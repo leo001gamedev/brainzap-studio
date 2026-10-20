@@ -32,6 +32,17 @@ To publish every skill (say, after setting up a new account), run the workflow b
 
 Upload rules, checked by `node scripts/check-skills.mjs` in CI and by `package.ps1`: frontmatter may only use `name`, `description`, `license`, `compatibility`, `metadata` and `allowed-tools`; `name` matches its folder, uses lowercase letters, digits and hyphens, and avoids "anthropic" and "claude"; the description stays under 1024 characters with no XML tags.
 
+## Plugin marketplace (Claude Code and the desktop app)
+
+The repo is also a private plugin marketplace (`.claude-plugin/marketplace.json`), like Matt Pocock's skills repo. The plugin `brainzap-studio` is the repo root, and its skills are `skills/`. Add it once per machine, through the SSH alias so the private repo is reachable:
+
+```
+/plugin marketplace add git@leo.github.com:leo001gamedev/brainzap-studio.git
+/plugin install brainzap-studio@brainzap
+```
+
+There's no `version` in `plugin.json` on purpose: each push is a new version, so `/plugin marketplace update brainzap` (or auto-update) pulls the latest skills without a zip. Cloud sessions don't install plugins, so the account skills above stay their source.
+
 ## Each game repo
 
 Its `CLAUDE.md` carries this section (the game template will include it), which is what makes the rules apply in cloud sessions. Paste it near the top, after the one-line description of the game:

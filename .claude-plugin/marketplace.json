@@ -1,0 +1,16 @@
+{
+  "name": "brainzap",
+  "owner": {
+    "name": "Leo",
+    "url": "https://github.com/leo001gamedev"
+  },
+  "description": "BrainZap Studio's shared rules, workflows and studio ADRs for every BrainZap game repo. Private.",
+  "plugins": [
+    {
+      "name": "brainzap-studio",
+      "source": "./",
+      "description": "Studio rules, milestone and task workflows, and the playbook of studio ADRs.",
+      "category": "engineering"
+    }
+  ]
+}

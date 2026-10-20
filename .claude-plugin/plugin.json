@@ -1,0 +1,9 @@
+{
+  "name": "brainzap-studio",
+  "description": "BrainZap Studio's rules (brainzap-rules), engineering standards, milestone and task workflows (start-milestone, finish-task) and studio ADRs (brainzap-playbook). Skills are read from skills/.",
+  "author": {
+    "name": "Leo",
+    "url": "https://github.com/leo001gamedev"
+  },
+  "repository": "https://github.com/leo001gamedev/brainzap-studio"
+}
