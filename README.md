@@ -1,42 +1,36 @@
 # BrainZap Studio
 
-Shared knowledge for every BrainZap game: the rules Claude Code follows in all projects, workflow skills, and studio-level decisions. Game repos never contain this repo. Claude loads it from `~/.claude`, so a `git pull` here updates every project at once.
+Shared knowledge for every BrainZap game: the studio rules and the skills Claude Code uses in all projects. This repo is private and is the only place they are edited. Game repos never contain a copy.
+
+## How it reaches Claude
+
+| Where Claude runs | How it gets the skills | How it gets the rules always-on |
+| --- | --- | --- |
+| Any terminal or VM signed in to Leo's claude.ai account | claude.ai account skills, synced into `~/.claude/skills/synced/` | The game repo's `CLAUDE.md` tells Claude to load `brainzap-rules` |
+| Cloud sessions (claude.ai/code, mobile, `--cloud`) | claude.ai account skills, loaded at session start | Same pointer in the game repo's `CLAUDE.md` |
+| This PC, after `link.ps1` | Same as above | Also imported into `~/.claude/CLAUDE.md`, so they load even outside game repos |
+
+Cloud sessions can't clone this private repo (GitHub access is limited to the session's own repositories, and setup scripts don't get environment variables), and they don't load plugins. That's why the skills are published to the account rather than fetched.
 
 ## Layout
 
-- `skills/` – Claude Code skills, each junctioned into `~/.claude/skills/`
-- `.claude/plans/` – plans for changes to this repo
+- `skills/<name>/SKILL.md` – one folder per skill. `brainzap-rules` holds the studio rules; `CLAUDE.md` imports it, so there is one source.
+- `package.ps1` – zips every skill into `dist/` (git-ignored) for upload.
+- `link.ps1` – adds the `CLAUDE.md` import to `~/.claude/CLAUDE.md` on a Windows machine. Optional.
+- `.claude/plans/` – plans for changes to this repo.
 
-## Setup
+## Publishing a change
 
-Each script links every folder in `skills/` into `~/.claude/skills/` and adds an `@<repo>/CLAUDE.md` import line to `~/.claude/CLAUDE.md`. Both are safe to rerun: they skip what is already linked and never replace a real folder.
+1. Edit the skill here, commit and push.
+2. Run `powershell -ExecutionPolicy Bypass -File package.ps1`.
+3. On claude.ai, Settings > Skills: replace the skill with its new zip from `dist/` (upload a new skill the same way, and turn it on).
 
-**Windows** (no admin needed), from a clone:
+Running sessions pick up the change within about 10 minutes; new sessions get it at start.
 
-```
-powershell -ExecutionPolicy Bypass -File link.ps1
-```
+Upload rules: `SKILL.md` frontmatter may only use `name`, `description`, `license`, `compatibility`, `metadata` and `allowed-tools`, and the description must stay under 1024 characters.
 
-**Linux or macOS** (e.g. a VM), from a clone:
+## Each game repo
 
-```
-./link.sh
-```
+Its `CLAUDE.md` (from the game template) carries this pointer, which is what makes the rules apply in cloud sessions:
 
-**Claude Code cloud sessions** don't see `~/.claude` from your machine and don't install plugins, so the cloud environment installs the studio itself. This repo stays private, and a setup script can't use the session's GitHub access (a plain clone fails with `could not read Username`), so it clones with a read-only token:
-
-1. GitHub → Settings → Developer settings → Fine-grained tokens → Generate new token: only `brainzap-studio`, permission *Contents: Read-only*, nothing else. Note its expiry date.
-2. In the claude.ai cloud environment, add the environment variable `STUDIO_TOKEN` with the token.
-3. Set the environment's setup script to this single line:
-
-```bash
-git clone --depth 1 "https://leo001gamedev:${STUDIO_TOKEN}@github.com/leo001gamedev/brainzap-studio.git" /opt/brainzap-studio && git -C /opt/brainzap-studio remote remove origin && bash /opt/brainzap-studio/link.sh
-```
-
-Keep it on one line: if a copy-paste merges two lines, `git clone` gets an extra argument and fails with `Too many arguments`. Removing `origin` takes the token out of the clone's git config. When the token expires, cloud setup fails with an authentication error: generate a new one and replace `STUDIO_TOKEN`.
-
-Every new cloud session clones the latest `master`. To check, run `/context` in a session and look for the studio `CLAUDE.md` under Memory files.
-
-## Updating
-
-Edit and push here. Local machines get the change with `git pull` (links point into the clone); cloud sessions get it on their next start.
+> Studio rules: before any git, GitHub, planning, ADR or code task, load the `brainzap-rules` skill, and follow `leo-architecture-standards`. This file and the GDD win where they conflict.

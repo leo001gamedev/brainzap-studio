@@ -2,12 +2,12 @@
 
 Move studio-wide knowledge out of `vine-trail` into this repo so every future game gets it. Based on the harvest audit of 2026-10-19 (5 memories, `CLAUDE.md`, GDD section 0, `NOTES.md`, ADRs 0001–0045, scripts, CI, `.claude/`).
 
-Principle: knowledge is shared now and updates automatically (junctions into `~/.claude`). Code and CI are copied into game two and extracted only when game three arrives, pinned to a version when they are.
+Principle: knowledge is shared now and updates automatically (claude.ai account skills, see Delivery). Code and CI are copied into game two and extracted only when game three arrives, pinned to a version when they are.
 
 ## Steps
 
 - [x] **1. Studio repo and first skill.** `brainzap-studio` created; `leo-architecture-standards` moved into `skills/` and junctioned back (backup of the original in `~/.claude/backups/skills-2026-10-19/`). `link.ps1` sets up a new machine.
-- [x] **2. Global `CLAUDE.md`.** Done 2026-10-19: `~/.claude/CLAUDE.md` is one `@` import of this repo's `CLAUDE.md` (written by `link.ps1`, without a BOM); skill §10 now targets `develop`; four vine-trail memories deleted, the fifth updated; vine-trail `CLAUDE.md` and GDD section 0 point here. Known gap: sessions without this machine's `~/.claude` (cloud sessions, another computer before `link.ps1`) only see each repo's own `CLAUDE.md`; a private plugin marketplace would close it. Original contents:
+- [x] **2. Global `CLAUDE.md`.** Done 2026-10-19: `~/.claude/CLAUDE.md` is one `@` import of this repo's `CLAUDE.md` (written by `link.ps1`, without a BOM); skill §10 now targets `develop`; four vine-trail memories deleted, the fifth updated; vine-trail `CLAUDE.md` and GDD section 0 point here. The rules now live in `skills/brainzap-rules/SKILL.md`; `CLAUDE.md` imports it (see Delivery). Original contents:
   - Branching: milestone branch → `develop` → `master` after full testing; push to the milestone branch, never to `develop`; `Closes #N` auto-closes only on the default branch.
   - One task per commit, message `Mn: task`.
   - ADR in the same commit for architecture, data-format or design decisions; Proposed by Claude, Accepted by Leo; accepted ADRs are superseded, never edited.
@@ -40,9 +40,14 @@ Principle: knowledge is shared now and updates automatically (junctions into `~/
 
 ADRs 0003–0005, 0008, 0010–0017, 0019, 0022, 0023, 0026, 0030, 0035, 0041, 0042, 0044; GDD sections 1–12; `NOTES.md` entries; `content-plan.md`; `research/`; `store-listing.md`.
 
-## Delivery (decided 2026-10-19)
+## Delivery (decided 2026-10-20)
 
-No plugin. Per the Claude Code docs, cloud sessions don't install plugins (not even ones a repo's `.claude/settings.json` enables), and a plugin can't ship a `CLAUDE.md`. Instead the studio repo installs itself everywhere with one script per place: `link.ps1` (Windows), `link.sh` (VM, Linux, macOS), and `link.sh` from the cloud environment's setup script (README).
+**Skills are published to Leo's claude.ai account**, which delivers them to every terminal or VM signed in to it, to cloud sessions and to Desktop. Each game repo's `CLAUDE.md` carries a short pointer to `brainzap-rules`, which makes the rules apply in cloud sessions. On this PC, `~/.claude/CLAUDE.md` also imports them so they're always loaded. Publishing: `package.ps1`, then upload the zip on claude.ai (README).
 
-- [ ] First cloud session: confirm the setup script can clone this private repo (Claude GitHub App installed on it) and that `/context` lists the studio `CLAUDE.md` and skills. Fallback if the clone is refused: enable the skills on claude.ai, which cloud sessions load automatically.
-- [ ] `link.sh` rerun on real Linux: untested (Windows can't make real symlinks without Developer Mode); first run tested.
+Tried and dropped (2026-10-19/20), in order:
+- **Plugin / private marketplace:** cloud sessions don't install plugins, even repo-enabled ones, and a plugin can't ship a `CLAUDE.md`.
+- **Cloud setup script cloning this repo:** a plain clone failed (`could not read Username`); setup scripts get no environment variables, so a token there was empty (`len=0`); the GitHub proxy only serves repositories attached to the session; and setup results are cached for about 7 days.
+- **Syncing a copy into each game repo with a GitHub Action:** Leo rejected copies in every repo.
+- Removed with them: `link.sh`, the skill junction in `~/.claude/skills/` (the synced account copy would clash with it), the cloud setup script and `STUDIO_TOKEN`.
+
+Checked: a cloud session on vine-trail listed `anthropic-skills:leo-architecture-standards` after the upload (2026-10-20). Locally, a headless session outside any repo answers from `skills/brainzap-rules/SKILL.md` through the nested import.
