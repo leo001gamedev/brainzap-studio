@@ -42,7 +42,7 @@ ADRs 0003–0005, 0008, 0010–0017, 0019, 0022, 0023, 0026, 0030, 0035, 0041, 0
 
 ## Delivery (decided 2026-10-20)
 
-**Skills are published to Leo's claude.ai account**, which delivers them to every terminal or VM signed in to it, to cloud sessions and to Desktop. Each game repo's `CLAUDE.md` carries a short pointer to `brainzap-rules`, which makes the rules apply in cloud sessions. On this PC, `~/.claude/CLAUDE.md` also imports them so they're always loaded. Publishing: `package.ps1`, then upload the zip on claude.ai (README).
+**Skills are published to Leo's claude.ai account**, which delivers them to every terminal or VM signed in to it, to cloud sessions and to Desktop. Each game repo's `CLAUDE.md` carries a short pointer to `brainzap-rules`, which makes the rules apply in cloud sessions. On this PC, `~/.claude/CLAUDE.md` also imports them so they're always loaded. Publishing: a push to `master` that changes a skill runs the **Skills** workflow, which checks it, releases the zip and opens an "Upload changed skills" issue; Leo uploads on claude.ai and closes it (README). The upload can't be automated for a personal account (no API, anthropics/claude-code#93163; Team/Enterprise could sync from GitHub on push instead). Checked 2026-10-20: a README-only push skipped publishing; a manual run released both zips and opened issue #1.
 
 Tried and dropped (2026-10-19/20), in order:
 - **Plugin / private marketplace:** cloud sessions don't install plugins, even repo-enabled ones, and a plugin can't ship a `CLAUDE.md`.
