@@ -1,6 +1,6 @@
 ---
 name: brainzap-rules
-description: BrainZap Studio's standing rules for every game repo - git flow (develop is home, milestone branches and PRs), commit messages, milestone spec issues, the Bug burndown milestone, ADRs, NOTES.md assumptions, and game code structure (pure core, config, tests, browser compatibility). Load before any git, GitHub, planning, ADR or code task in a BrainZap project, and whenever creating milestones, issues, branches, commits or pull requests.
+description: BrainZap Studio's standing rules for every game repo - git flow (develop is home, milestone branches and PRs), commit messages, milestone spec issues, the Bug burndown milestone, ADRs, NOTES.md assumptions, how Matt Pocock's /grill-with-docs, /to-spec, /to-tickets and /implement fit in, and game code structure (pure core, config, tests, browser compatibility). Load before any git, GitHub, planning, ADR or code task in a BrainZap project, and whenever creating milestones, issues, branches, commits or pull requests.
 ---
 
 # BrainZap Studio – rules for every project
@@ -9,6 +9,14 @@ A project's own `CLAUDE.md` or docs win where they conflict; Leo in chat wins ov
 
 ## Engineering standards
 Follow the `leo-architecture-standards` skill (SOLID checks before refactors, surgical changes, incremental migrations, workflow conventions, transferable lessons).
+
+## How work flows
+Leo drives new work with Matt Pocock's commands; the studio skills shape what they produce. Claude can't start those commands itself, so when Leo brings a feature, bug or idea, name the next one for Leo to run.
+1. `/grill-with-docs` (or `/grill-me`): settle the decisions. ADRs it writes follow `brainzap-playbook`'s references/writing-adrs.md.
+2. `/to-spec`, `/to-tickets`: the result is one milestone, created as `start-milestone` describes. The tickets become the spec issue's `Mn.x` checklist, not separate issues.
+3. `/implement`: one `Mn.x` task at a time, on the milestone branch. Its `/code-review` is the task's review. When it reaches its commit, follow `finish-task` from its step 3 (findings to Bug burndown, GDD and issue ticks, ADRs, dev-costs, `Mn:` message, push), so the task stays one commit.
+- Too big or unclear for one milestone: `/wayfinder` first; each settled part becomes a milestone. A bug: its Bug burndown issue, then `/implement` on it (`/diagnosing-bugs` first if the cause is unknown).
+- Those commands are only installed on Leo's PC. In a cloud session, use `start-milestone` and `finish-task` directly.
 
 ## Git and GitHub
 - **`develop` is home.** Each milestone gets one branch off `develop` and one PR into `develop`. `develop` merges into `master` only after thorough testing, because `master` deploys to production. Never target `master` from a milestone branch, and never push to `develop` directly; Leo merges.

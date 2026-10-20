@@ -1,6 +1,6 @@
 ---
 name: start-milestone
-description: Turn an agreed plan, design or feature idea into a new BrainZap milestone - the next "Mn - Name" GitHub milestone, ONE spec issue in PRD form with an Mn.x task checklist, the matching GDD milestone section, and the milestone branch off develop. Use when Leo asks to create a milestone, make tickets or issues from a plan, write a spec or PRD, or start the next milestone. Replaces the one-issue-per-task output of to-tickets.
+description: Turn an agreed plan, design or feature idea into a new BrainZap milestone - the next "Mn - Name" GitHub milestone, ONE spec issue in PRD form with an Mn.x task checklist, the matching GDD milestone section, and the milestone branch off develop. Use when Leo asks to create a milestone, make tickets or issues from a plan, write a spec or PRD, or start the next milestone, and as the publishing step whenever Leo runs /to-spec or /to-tickets in a BrainZap repo (their tickets become the Mn.x checklist of one spec issue, not one issue each).
 ---
 
 # Start a milestone

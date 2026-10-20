@@ -18,7 +18,7 @@ Run the project's checks from its `CLAUDE.md` (typically test, lint, format chec
 
 ## 3. Review the diff
 
-Review the task's diff on its own, as if it were a PR: `/code-review` against the branch's previous commit, with the spec issue as the spec. Fix what belongs to this task. Anything real but outside it becomes a Bug burndown issue, following [references/filing-findings.md](references/filing-findings.md), not a note in chat.
+If `/implement` already ran `/code-review` on this task, use its findings; don't review twice. Otherwise review the task's diff on its own, as if it were a PR: `/code-review` against the branch's previous commit, with the spec issue as the spec. Fix what belongs to this task. Anything real but outside it becomes a Bug burndown issue, following [references/filing-findings.md](references/filing-findings.md), not a note in chat.
 
 ## 4. Update the docs
 
