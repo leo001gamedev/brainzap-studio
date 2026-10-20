@@ -28,9 +28,18 @@ function readFrontmatter(text) {
             fields[key] += ' ' + line.trim();
         }
     }
+    // Plain (unquoted) YAML values break on ' #' (starts a comment, so claude.ai cuts the text there)
+    // and on ': ' (a YAML syntax error). Record them before the quotes are stripped.
+    const yamlTraps = [];
+    for (const [k, raw] of Object.entries(fields)) {
+        if (/^['"|>]/.test(raw)) continue;
+        if (/\s#/.test(raw)) yamlTraps.push(`${k}: unquoted value contains " #", which YAML reads as a comment and cuts off; reword or quote the value`);
+        if (/:\s/.test(raw)) yamlTraps.push(`${k}: unquoted value contains ": ", which is a YAML error; reword or quote the value`);
+    }
     for (const k of Object.keys(fields)) {
         fields[k] = fields[k].replace(/^[>|][-+]?\s*/, '').replace(/^(['"])(.*)\1$/, '$2').trim();
     }
+    Object.defineProperty(fields, 'yamlTraps', { value: yamlTraps });
     return fields;
 }
 
@@ -42,6 +51,7 @@ function checkSkill(dir, name) {
     const fields = readFrontmatter(readFileSync(file, 'utf8'));
     if (!fields) return ['SKILL.md must start with a --- frontmatter block'];
 
+    problems.push(...fields.yamlTraps);
     for (const key of Object.keys(fields)) {
         if (!ALLOWED_KEYS.includes(key)) problems.push(`frontmatter key "${key}" is not allowed (allowed: ${ALLOWED_KEYS.join(', ')})`);
     }
