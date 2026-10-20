@@ -16,7 +16,7 @@ Leo drives new work with Matt Pocock's commands; the studio skills shape what th
 2. `/to-spec`, `/to-tickets`: the result is one milestone, created as `start-milestone` describes. The tickets become the spec issue's `Mn.x` checklist, not separate issues.
 3. `/implement`: one `Mn.x` task at a time, on the milestone branch. Its `/code-review` is the task's review. When it reaches its commit, follow `finish-task` from its step 3 (findings to Bug burndown, GDD and issue ticks, ADRs, dev-costs, `Mn:` message, push), so the task stays one commit.
 - Too big or unclear for one milestone: `/wayfinder` first; each settled part becomes a milestone. A bug: its Bug burndown issue, then `/implement` on it (`/diagnosing-bugs` first if the cause is unknown).
-- Those commands are only installed on Leo's PC. In a cloud session, use `start-milestone` and `finish-task` directly.
+- Matt's skills come from his plugin on Leo's PC and from Leo's claude.ai account in cloud sessions. If one is missing, use `start-milestone` and `finish-task` directly.
 
 ## Git and GitHub
 - **`develop` is home.** Each milestone gets one branch off `develop` and one PR into `develop`. `develop` merges into `master` only after thorough testing, because `master` deploys to production. Never target `master` from a milestone branch, and never push to `develop` directly; Leo merges.
