@@ -1,11 +1,6 @@
----
-name: write-adr
-description: Write an Architecture Decision Record for a BrainZap project - when one is required, numbering, the template (Context, Decision, Alternatives considered, Consequences), Proposed status, superseding instead of editing, and whether the decision is game-specific or studio-wide. Use whenever a change touches architecture, a data or save format, a build or platform target, or contradicts or changes a decision in the GDD, and when Leo asks to record a decision.
----
-
 # Write an ADR
 
-Load `brainzap-rules` first; the project's `CLAUDE.md` wins where it differs.
+For any BrainZap game repo. The project's `CLAUDE.md` wins where it differs.
 
 ## 1. Is an ADR needed?
 
@@ -19,10 +14,10 @@ No for a bug fix that restores documented behaviour, a refactor with no visible 
 
 ## 2. Game ADR or studio ADR?
 
-First check the studio ADRs in the `brainzap-playbook` skill: if one already covers the decision, the game follows it and cites it (`studio S-0003`) with no ADR of its own.
+First check the studio ADRs in this playbook (`SKILL.md` lists them): if one already covers the decision, the game follows it and cites it (`studio S-0003`) with no ADR of its own.
 
 - **Game ADR** (`docs/adr/` in the game repo): the decision is about this game, or it departs from a studio ADR. A departure names the studio ADR and says why this game differs.
-- **Studio-wide** (it would apply to every BrainZap game: platform wrapper, saves, analytics schema, release zips, browser rules): still write the game ADR, since this game is where it lands, and tell Leo it's a candidate for `brainzap-playbook`.
+- **Studio-wide** (it would apply to every BrainZap game: platform wrapper, saves, analytics schema, release zips, browser rules): still write the game ADR, since this game is where it lands, and tell Leo it's a candidate for this playbook.
 
 ## 3. Write it
 

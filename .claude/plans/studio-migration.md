@@ -24,6 +24,7 @@ Principle: knowledge is shared now and updates automatically (claude.ai account 
   - `review-to-burndown`: create the "Bug burndown" milestone if missing; one issue per unfixed finding, linking its source.
   - `write-adr`: GDD section 0's template and rules, plus "studio ADR or game ADR?".
   - Later: `new-game` (when game two starts; its `CLAUDE.md` names the studio rules and `leo-architecture-standards` explicitly, Leo's preference), `harvest-lessons` (end of each milestone).
+- [x] **3b. Fewer skills.** Done 2026-10-20: `review-to-burndown` became `finish-task/references/filing-findings.md` and `write-adr` became `brainzap-playbook/references/writing-adrs.md`; `brainzap-rules` points to both. A new skill must be a workflow Leo invokes or a large reference loaded only sometimes; always-on rules go in `brainzap-rules`. Build `new-game`/`harvest-lessons` only after doing the job by hand twice.
 - [x] **4. Studio ADRs and playbooks.** Done 2026-10-20 as the `brainzap-playbook` skill (so cloud sessions get it too): 10 studio ADRs S-0001–S-0010 grouped by topic from the list below, each naming its vine-trail origin, plus `references/performance-budgets.md` and `references/release-test-pass.md`. `write-adr` and `start-milestone` now consult it. Open: move the analytics event table here (S-0006). Source list:
   - Architecture: 0002, 0006, 0009
   - Saves: 0007; additive-field-with-default pattern from 0021/0024/0032

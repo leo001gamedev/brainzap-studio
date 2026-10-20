@@ -1,11 +1,6 @@
----
-name: review-to-burndown
-description: File review findings, playtest bugs and tech debt that won't be fixed in the current task as Bug burndown issues in a BrainZap repo - one issue per finding, in the "Bug burndown" GitHub milestone, labelled and linked to its source. Use after a code review or playtest leaves findings unfixed, when Leo reports a small bug outside the current milestone, or when anything worth fixing would otherwise stay only in chat.
----
-
 # File findings into Bug burndown
 
-Findings left in chat get lost. Each one that isn't fixed now becomes its own issue. Load `brainzap-rules` first; the project's `CLAUDE.md` wins where it differs.
+Findings left in chat get lost. Each one that isn't fixed now becomes its own issue. This applies to findings from `finish-task`'s review step and on its own: after any code review or playtest, or when Leo reports a small bug outside the current milestone.
 
 ## 1. Decide what gets filed
 
@@ -50,4 +45,4 @@ gh issue create --title "<symptom>" --milestone "Bug burndown" --label bug --bod
 
 ## 4. Report
 
-List the issues filed with their links, and anything you dropped and why, in one short list. When a burndown issue is fixed later, its branch is `<N>-<slug>` and its commits are `#N: <fix>`; `finish-task` covers that.
+List the issues filed with their links, and anything you dropped and why, in one short list. When a burndown issue is fixed later, its branch is `<N>-<slug>` and its commits are `#N: <fix>`, closed out with `finish-task`.
