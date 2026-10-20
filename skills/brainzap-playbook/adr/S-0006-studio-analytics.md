@@ -1,6 +1,6 @@
 # S-0006: Studio analytics on GA4, one schema for every game
 
-Status: Proposed
+Status: Accepted
 Date: 2026-10-20
 Origin: vine-trail ADR-0036, ADR-0021, ADR-0025, docs/analytics-events.md, docs/analytics-setup.md
 
@@ -27,4 +27,4 @@ BrainZap is a bundle of games, and Leo wants one dashboard with a Game dropdown:
 - A new game adds a data stream and a `game_id`, follows the schema, and appears in the dashboard.
 - Playgama numbers stay in Playgama's console: two places to look.
 - Counts run low: ad blockers, Safari's 7-day limit on script-set cookies, and players who decline.
-- Open decision for Leo: move the full event table (Vine Trail's `docs/analytics-events.md`, titled "BrainZap studio analytics events") into this playbook as the single studio copy, with Vine Trail pointing here. Until then, Vine Trail's file is canonical.
+- The full event table stays in Vine Trail's `docs/analytics-events.md` (canonical) while Vine Trail is the only game sending events, because the schema still grows with its milestones and game sessions can't edit this repo. Leo, 2026-10-20: move it into this playbook when a second game starts sending events.

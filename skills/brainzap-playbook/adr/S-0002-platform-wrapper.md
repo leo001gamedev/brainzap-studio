@@ -1,6 +1,6 @@
 # S-0002: One platform contract, an implementation per target
 
-Status: Proposed
+Status: Accepted
 Date: 2026-10-20
 Origin: vine-trail ADR-0006, ADR-0020, ADR-0028
 

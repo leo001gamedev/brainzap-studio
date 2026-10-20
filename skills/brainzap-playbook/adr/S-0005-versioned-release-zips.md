@@ -1,6 +1,6 @@
 # S-0005: Versioned release zips from tags
 
-Status: Proposed
+Status: Accepted
 Date: 2026-10-20
 Origin: vine-trail ADR-0029
 

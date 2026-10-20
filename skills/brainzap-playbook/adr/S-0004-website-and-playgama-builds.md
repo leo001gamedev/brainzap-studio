@@ -1,6 +1,6 @@
 # S-0004: A website build and a Playgama build from one codebase
 
-Status: Proposed
+Status: Accepted
 Date: 2026-10-20
 Origin: vine-trail ADR-0020, ADR-0027, docs/release-checklist.md
 

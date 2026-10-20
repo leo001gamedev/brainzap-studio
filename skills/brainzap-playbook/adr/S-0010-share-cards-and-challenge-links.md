@@ -1,6 +1,6 @@
 # S-0010: Share cards that work alone, and challenge links
 
-Status: Proposed
+Status: Accepted
 Date: 2026-10-20
 Origin: vine-trail ADR-0025, ADR-0045
 

@@ -1,6 +1,6 @@
 # S-0007: Mobile web canvas – sharpness, fluid layout, safe areas and sound
 
-Status: Proposed
+Status: Accepted
 Date: 2026-10-20
 Origin: vine-trail ADR-0018, ADR-0031, ADR-0033, ADR-0043
 

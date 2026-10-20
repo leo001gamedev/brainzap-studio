@@ -1,6 +1,6 @@
 # S-0003: Versioned saves with storage fallbacks
 
-Status: Proposed
+Status: Accepted
 Date: 2026-10-20
 Origin: vine-trail ADR-0007, ADR-0021, ADR-0024, ADR-0032, ADR-0036
 

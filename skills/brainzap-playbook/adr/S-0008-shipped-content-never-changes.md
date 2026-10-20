@@ -1,6 +1,6 @@
 # S-0008: Shipped content never changes
 
-Status: Proposed
+Status: Accepted
 Date: 2026-10-20
 Origin: vine-trail ADR-0037, ADR-0038
 
