@@ -33,7 +33,7 @@ jobs:
           if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ] || ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
             touched=$(ls skills)
           else
-            touched=$(git diff --name-only "$BEFORE" "$GITHUB_SHA" -- skills/ | cut -d/ -f2 | sort -u)
+            touched=$(git diff --name-only --no-renames "$BEFORE" "$GITHUB_SHA" -- skills/ | cut -d/ -f2 | sort -u)
           fi
           changed=""; removed=""
           for name in $touched; do
