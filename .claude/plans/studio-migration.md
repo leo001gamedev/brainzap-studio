@@ -18,7 +18,7 @@ Principle: knowledge is shared now and updates automatically (claude.ai account 
   - Points at `leo-architecture-standards`.
   - Then: delete the vine-trail project memories it covers (branching, milestone structure, bug burndown, CLAUDE.md-references-skill; keep the skill-location reference), and slim vine-trail's `CLAUDE.md` and GDD section 0 down to game-specific rules plus a pointer.
   - **Conflict to resolve first:** `leo-architecture-standards` §10 says the milestone PR goes "into the default branch". That contradicts develop-is-home. Fix the skill to say "into the integration branch (`develop`)".
-- [ ] **3. Workflow skills.** Remove repo-specific numbers (#7, #75) from each.
+- [x] **3. Workflow skills.** Done 2026-10-20: `start-milestone`, `finish-task`, `review-to-burndown`, `write-adr` in `skills/`; dry-run of start-milestone and write-adr in vine-trail gave M14, `<issue>-m14-sound-pack` and ADR-0046. Remove repo-specific numbers (#7, #75) from each.
   - `start-milestone`: "Mn - Name", one PRD spec issue (Problem, Solution, User Stories, Implementation Decisions with Mn.x checklist, Testing, Out of Scope, Notes), GDD section 11 entries, branch `N-mN-slug`. Replaces the override of `/to-tickets`.
   - `finish-task`: dev-costs row from `.claude/session-cost.json` (procedure in vine-trail `docs/dev-costs.md`), GDD checkboxes, commit, push to the milestone branch.
   - `review-to-burndown`: create the "Bug burndown" milestone if missing; one issue per unfixed finding, linking its source.
