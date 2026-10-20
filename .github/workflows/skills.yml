@@ -1,0 +1,52 @@
+name: Skills
+
+# Pull requests: check every skill against claude.ai's upload rules.
+# Pushes to master: also zip the changed skills into a Release and open an issue to upload them.
+# Run it by hand (Actions > Skills > Run workflow) to publish every skill.
+on:
+  pull_request:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  skills:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check skills against the upload rules
+        run: node scripts/check-skills.mjs
+
+      - name: Find changed and removed skills
+        id: changed
+        if: github.event_name != 'pull_request'
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ] || ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            touched=$(ls skills)
+          else
+            touched=$(git diff --name-only "$BEFORE" "$GITHUB_SHA" -- skills/ | cut -d/ -f2 | sort -u)
+          fi
+          changed=""; removed=""
+          for name in $touched; do
+            if [ -f "skills/$name/SKILL.md" ]; then changed="$changed $name"; else removed="$removed $name"; fi
+          done
+          echo "changed=$(echo $changed)" >> "$GITHUB_OUTPUT"
+          echo "removed=$(echo $removed)" >> "$GITHUB_OUTPUT"
+          echo "changed:${changed:- none}  removed:${removed:- none}"
+
+      - name: Release the zips and open an upload issue
+        if: steps.changed.outputs.changed != '' || steps.changed.outputs.removed != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CHANGED: ${{ steps.changed.outputs.changed }}
+          REMOVED: ${{ steps.changed.outputs.removed }}
+        run: bash scripts/publish-skills.sh
