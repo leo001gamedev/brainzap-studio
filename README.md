@@ -23,7 +23,7 @@ Cloud sessions can't clone this private repo (GitHub access is limited to the se
 ## Publishing a change
 
 1. Edit the skill here, commit and push to `master`.
-2. The **Skills** workflow checks every skill against the upload rules, zips the changed ones into a GitHub Release, and opens an issue "Upload changed skills: …" with a download link per skill.
+2. The **Skills** workflow checks every skill against the upload rules, zips the changed ones into a GitHub Release, and opens an issue "Upload changed skills: …" with a download link per skill. Each zip is named `<skill>-<short sha>.zip`, so you can tell which commit you are uploading (`-dirty` from `package.ps1` means uncommitted changes).
 3. Follow the issue: on claude.ai, Settings > Skills, replace each skill with its zip (upload a new one and turn it on; remove a deleted one). Close the issue.
 
 Running sessions pick up an upload within about 10 minutes. An open upload issue means claude.ai is behind this repo. The upload stays manual because claude.ai has no API for personal account skills ([anthropics/claude-code#93163](https://github.com/anthropics/claude-code/issues/93163)); when one lands, `scripts/publish-skills.sh` can call it instead of opening an issue.
