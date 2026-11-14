@@ -43,6 +43,16 @@ The repo is public and is also a plugin marketplace (`.claude-plugin/marketplace
 
 No token is needed; the public repo is readable by any agent. Cloud sessions don't install plugins, so the account skills above stay their source for Leo's sessions.
 
+## Starting a new game
+
+```
+scripts/new-game-project.sh "<Game Title>"
+```
+
+This makes a private repository from the template repo (`brainzap-game-template`, private, so only Leo's account can use it), clones it beside this repo, installs it and names it. `npm run dev` then shows a placeholder scene. It stops without changing anything if the folder or the repository already exists; `DRY_RUN=1` prints what it would do.
+
+The template holds the toolchain, the workflows and a blank first scene, and is never a copy of a live game. The `new-game` skill writes the brief and the GDD into the same repo. A fix made to shared tooling in one game has to be copied to the template by hand.
+
 ## Each game repo
 
 Its `CLAUDE.md` carries a `## Studio rules` section, which is what makes the rules apply in cloud sessions. The `new-game` skill writes it for a new game. For an existing repo, copy it from `skills/new-game/references/kickoff-files.md` and paste it near the top, after the one-line description of the game.
