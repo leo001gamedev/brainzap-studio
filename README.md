@@ -45,11 +45,6 @@ There's no `version` in `plugin.json` on purpose: each push is a new version, so
 
 ## Each game repo
 
-Its `CLAUDE.md` carries this section (the game template will include it), which is what makes the rules apply in cloud sessions. Paste it near the top, after the one-line description of the game:
-
-```markdown
-## Studio rules
-Before any git, GitHub, planning, ADR or code task, load the `brainzap-rules` skill (git flow, milestones, Bug burndown, ADRs, pure core, compatibility), and follow the `leo-architecture-standards` skill. Use `brainzap-playbook` for the studio's proven decisions (saves, builds, Playgama, analytics, mobile canvas, content, sharing) and for writing ADRs. All three come from the private `brainzap-studio` repo through Leo's claude.ai account, so cloud sessions have them too. Where they conflict with this file or the GDD, this project's own rules win.
-```
+Its `CLAUDE.md` carries a `## Studio rules` section, which is what makes the rules apply in cloud sessions. The `new-game` skill writes it for a new game. For an existing repo, copy it from `skills/new-game/references/kickoff-files.md` and paste it near the top, after the one-line description of the game.
 
 Then add a short `## Project specifics` section for what the skills leave to each game: where milestone tasks live, the Bug burndown milestone's number, which spec issue to model new ones on, and the project's check commands. Don't copy studio rules into the repo; change them here instead.
