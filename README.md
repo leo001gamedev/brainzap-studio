@@ -34,14 +34,14 @@ Upload rules, checked by `node scripts/check-skills.mjs` in CI and by `package.p
 
 ## Plugin marketplace (Claude Code and the desktop app)
 
-The repo is also a private plugin marketplace (`.claude-plugin/marketplace.json`), like Matt Pocock's skills repo. The plugin `brainzap-studio` is the repo root, and its skills are `skills/`. Add it once per machine, through the SSH alias so the private repo is reachable:
+The repo is public and is also a plugin marketplace (`.claude-plugin/marketplace.json`), like Matt Pocock's skills repo. The plugin `brainzap-studio` is the repo root, and its skills are `skills/`. Add it once per machine:
 
 ```
-/plugin marketplace add git@leo.github.com:leo001gamedev/brainzap-studio.git
+/plugin marketplace add https://github.com/leo001gamedev/brainzap-studio.git
 /plugin install brainzap-studio@brainzap
 ```
 
-There's no `version` in `plugin.json` on purpose: each push is a new version, so `/plugin marketplace update brainzap` (or auto-update) pulls the latest skills without a zip. Cloud sessions don't install plugins, so the account skills above stay their source.
+No token is needed; the public repo is readable by any agent. Cloud sessions don't install plugins, so the account skills above stay their source for Leo's sessions.
 
 ## Each game repo
 

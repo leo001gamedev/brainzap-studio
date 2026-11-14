@@ -53,3 +53,5 @@ Tried and dropped (2026-10-19/20), in order:
 - Removed with them: `link.sh`, the skill junction in `~/.claude/skills/` (the synced account copy would clash with it), the cloud setup script and `STUDIO_TOKEN`.
 
 Checked: a cloud session on vine-trail listed `anthropic-skills:leo-architecture-standards` after the upload (2026-10-20). Locally, a headless session outside any repo answers from `skills/brainzap-rules/SKILL.md` through the nested import.
+
+Updated 2026-11-14: `brainzap-studio` is now public, so skills are reachable over plain HTTPS with no token — from this machine's plugin marketplace, from any coding agent that clones or reads the raw files, and from cloud sessions that fetch them directly. The personal-account skill upload remains Leo's fast path for cloud sessions; the public repo is the token-free single source.
